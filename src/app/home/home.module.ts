@@ -4,10 +4,14 @@ import { HomeRoutingModule } from './home-routing.module';
 
 //Components
 import { HomeComponent } from './home/home.component';
+import { CardsInformationComponent } from './components/cards-information/cards-information.component';
+import { NotebookComponent } from './components/notebook/notebook.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    CardsInformationComponent,
+    NotebookComponent
   ],
   imports: [
     HomeRoutingModule,

@@ -1,0 +1,39 @@
+.footer {
+  background-color: #0F1D23;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  height: 45px;
+  width: 86%;
+
+  .footer__copy-right {
+    font-family: "Red Rose";
+  }
+
+  .footer__copy-right p {
+    line-height: 47px;
+    margin-left: 10px;
+  }
+
+  .footer__logo img {
+    display: block;
+    margin: 0 auto;
+    width: 7%;
+  }
+
+
+
+  .footer__social ul li {
+    float: right;
+    margin-right: 10px;
+    line-height: 51px;
+    list-style: none;
+
+
+    a {
+      color: #ccc;
+      font-size:30px;
+    }
+  }
+
+}

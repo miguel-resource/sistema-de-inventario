@@ -1,32 +1,58 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-  [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       <a routerLink="/">
         <img src="./../assets/logo/logo-principal.png" alt="PointShop">
       </a>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" routerLinkActive="active"><i class="fas fa-paw icon"></i>Inicio</a>
-      <a mat-list-item routerLink="/home" routerLinkActive="active"><i class="fas fa-paw icon"></i>Productos</a>
-      <a mat-list-item routerLink="/home" routerLinkActive="active"><i class="fas fa-paw icon"></i>Ventas</a>
-      <a mat-list-item routerLink="/home" routerLinkActive="active"><i class="fas fa-paw icon"></i>Proveedores</a>
-      <a mat-list-item routerLink="/home" routerLinkActive="active"><i class="fas fa-paw icon"></i>Categorías</a>
+      <ul>
+        <li routerLink="/" routerLinkActive="active">
+          <i class='bx bxs-home'></i>Inicio
+        </li>
+        <li  routerLink="/productos" routerLinkActive="active">
+          <i class='bx bxs-package'></i>Productos
+        </li>
+        <li  routerLink="/ventas" routerLinkActive="active">
+          <i class='bx bx-money'></i>Ventas
+        </li>
+        <li  routerLink="/proveedores" routerLinkActive="active">
+          <i class='bx bxs-truck' ></i>Proveedores
+        </li>
+        <li  routerLink="/categorias" routerLinkActive="active">
+          <i class='bx bxs-category' ></i>Categorías
+        </li>
+        <li  routerLink="/promociones" routerLinkActive="active">
+          <i class='bx bxs-offer'></i>Promociones
+        </li>
+      </ul>
     </mat-nav-list>
 
     <div class="user">
-      <div class="user-img">
-        <img src="">
+      <div class="user__img">
+        <img src="./../assets/empresa/logo-empresa.png">
       </div>
-      <div class="user-text">
+      <div class="user__text">
         <p>Tu empresa</p>
       </div>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="date">
+        <p class="date__text"><i class='bx bxs-calendar'></i>31/12/2021</p>
+      </div>
+      <div class="notification">
+        <mat-icon matBadge="2" matBadgeColor="warn"><i class='bx bxs-bell'></i></mat-icon>
+      </div>
+    </mat-toolbar>
+
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-

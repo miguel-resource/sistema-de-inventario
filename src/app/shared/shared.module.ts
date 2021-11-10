@@ -4,15 +4,18 @@ import { CommonModule } from '@angular/common';
 //Components
 import { FooterComponent } from './components/footer/footer.component';
 
-
 //Material
-import { MaterialModule } from './../material/material.module'
+import { MaterialModule } from './../material/material.module';
+import { DateComponent } from './components/date/date.component';
+
 @NgModule({
   declarations: [
-    FooterComponent
+    FooterComponent,
+    DateComponent
   ],
   exports: [
-    FooterComponent
+    FooterComponent,
+    DateComponent
   ],
   imports: [
     MaterialModule,
