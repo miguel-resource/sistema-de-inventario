@@ -93,6 +93,16 @@
 
 .notification i {
   color: #0F1D23;
+  font-size: 25px;
+  transition: all 0.3s;
+}
+
+.notification .mat-icon:hover {
+  cursor: pointer;
+}
+
+.notification i:hover{
+  transform: scale(1.1); /* Igual que: scaleX(0.7) scaleY(0.7) */
 }
 
 @media (min-width: 320px) {

@@ -10,7 +10,7 @@ import { map, Observable, shareReplay } from 'rxjs';
 })
 export class AppComponent {
   title = 'inventory-system';
-
+  centered = false;
   constructor(
     private breakpointObserver: BreakpointObserver,
     public router: Router

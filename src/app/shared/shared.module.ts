@@ -11,14 +11,13 @@ import { DateComponent } from './components/date/date.component';
 @NgModule({
   declarations: [
     FooterComponent,
-    DateComponent
+    DateComponent,
   ],
   exports: [
     FooterComponent,
     DateComponent
   ],
   imports: [
-    MaterialModule,
     CommonModule
   ]
 })

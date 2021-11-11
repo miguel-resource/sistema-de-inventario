@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
+import { MatRippleModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -18,7 +21,10 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    MatRippleModule,
+    MatMenuModule,
+    MatPaginatorModule
   ],
   exports: [
     MatSidenavModule,
@@ -27,7 +33,14 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    MatRippleModule,
+    MatMenuModule,
+    MatPaginatorModule
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+  static use(arg0: string[]) {
+    throw new Error('Method not implemented.');
+  }
+}
