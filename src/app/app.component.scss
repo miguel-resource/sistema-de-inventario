@@ -1,3 +1,4 @@
+@import "./shared/styles/variables.scss";
 .mat-sidenav {
   width: 170px;
   background-color: #0F1D23;
@@ -11,7 +12,7 @@
 .mat-nav-list ul li {
   margin: 0 auto;
   list-style: none;
-  font-family: 'Red Rose', cursive;
+  font-family: $fuente-principal;
   font-size: 18px;
   width: 87%;
   height: 36px;

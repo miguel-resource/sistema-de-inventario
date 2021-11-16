@@ -1,6 +1,13 @@
+@import "./../../../shared/styles/variables.scss";
+
+.mat-raised-button {
+  margin-bottom: 10px;
+}
+
 .mat-table {
   border-radius: 10px;
   text-align: center;
+  font-family: $fuente-principal;
   width: 80%;
 
   .mat-header-cell {
