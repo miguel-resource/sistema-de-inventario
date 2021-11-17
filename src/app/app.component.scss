@@ -42,24 +42,27 @@
   margin: 0 auto;
   margin-top: 50%;
   width: 100%;
+
+  &__img {
+    margin: 0 auto;
+    width: 45%;
+  }
+
+  &__img img {
+    border-radius: 18px;
+    margin: 0 auto;
+    width: 75px;
+  }
+
+  &__text p {
+    font-family: $fuente-principal;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+  }
 }
 
-.user .user__img {
-  margin: 0 auto;
-  width: 45%;
-}
 
-.user .user__img img {
-  border-radius: 18px;
-  margin: 0 auto;
-  width: 75px;
-}
-
-.user .user__text p {
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
 
 
 .mat-sidenav-content {
@@ -67,61 +70,62 @@
   background: #909990;
   height: 100%;
   width: 100%;
+
+  .toolbar {
+    border-radius: 10px;
+    height: 30px;
+    width: 150px;
+
+    .date .date__text{
+      line-height:16px;
+      font-size:17px;
+      text-align: center;
+      font-weight: 400;
+
+      i {
+        margin-right: 4px;
+        font-size: 16px;
+      }
+    }
+  }
+
 }
 
-.mat-sidenav-content .toolbar {
-  border-radius: 10px;
-  height: 30px;
-  width: 150px;
-}
-
-.mat-sidenav-content .toolbar .date .date__text{
-  line-height:16px;
-  font-size:17px;
-  text-align: center;
-  font-weight: 400;
-}
-
-.date .date__text i {
-  margin-right: 4px;
-  font-size: 16px;
-}
 
 .notification {
   margin-left: 30px;
   padding-top: 8px;
+
+  i {
+    color: #0F1D23;
+    font-size: 25px;
+    transition: all 0.3s;
+  }
+
+  .mat-icon:hover {
+    cursor: pointer;
+  }
+
+  i:hover{
+    transform: scale(1.1); /* Igual que: scaleX(0.7) scaleY(0.7) */
+  }
+
 }
 
-.notification i {
-  color: #0F1D23;
-  font-size: 25px;
-  transition: all 0.3s;
-}
 
-.notification .mat-icon:hover {
-  cursor: pointer;
-}
 
-.notification i:hover{
-  transform: scale(1.1); /* Igual que: scaleX(0.7) scaleY(0.7) */
-}
 
 @media (min-width: 320px) {
   .mat-sidenav-content .toolbar {
     width: 180px;
-  }
 
-  .mat-sidenav-content .toolbar .date .date__text{
-    line-height:13px;
+    .date .date__text{
+      line-height:13px;
 
+    }
   }
 }
 
-@media (min-width:480px) {
-
-}
-
-@media (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
 @media (min-width:960px) {
   .mat-sidenav-content .toolbar {
     width: 146px;

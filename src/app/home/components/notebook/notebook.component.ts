@@ -3,8 +3,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Notebook } from './../../../core/models/notebook.model'
 
+
 //Service
 import { NotebookService } from './../../../core/services/notebook/notebook.service'
+
+//Import
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+import { async } from 'rxjs';
 @Component({
   selector: 'app-notebook',
   templateUrl: './notebook.component.html',
@@ -14,12 +20,21 @@ export class NotebookComponent implements OnInit {
 
   notas: Notebook[] = [];
   displayedColumns: string[] = ['Cantidad', 'Nombre', 'Precio', 'Hora','Acciones'];
+  filterName = '';
+  @ViewChild('paginator') paginator!: MatPaginator;
+  dataSource!: MatTableDataSource<Notebook>;
+  data: Notebook[] = [];
 
   constructor(
-    private notebookService: NotebookService
-  ) {}
+    private notebookService: NotebookService,
+    private dialog: MatDialog
+  ) {
+
+  }
 
   ngOnInit(): void {
+
+
     this.notebookService.getAll().subscribe((resp: any) => {
       this.notas = resp.map((e: any) => {
         return {
@@ -29,24 +44,45 @@ export class NotebookComponent implements OnInit {
           hour: e.payload.doc.data().hour,
         }
       })
+
+      this.dataSource = new MatTableDataSource(this.notas);
+
     }, (err: any) => {
       console.log(err);
     })
 
+
+    this.data = this.notas;
     console.log(this.notas);
+
   }
-
-
-  @ViewChild('paginator') paginator!: MatPaginator;
-  dataSource!: MatTableDataSource<Notebook>;
 
 
 
 
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.notas);
     this.dataSource.paginator = this.paginator;
+
+  }
+
+
+  dialogOpen():void {
+    const dialogRef = this.dialog.open(DialogComponent);
+  }
+
+  applyFilter(filterValue:string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+  /*   const newValor = this.notas.filter((resp)=> {
+      return resp.name.toLowerCase().indexOf(filterValue) !== -1;
+    })
+
+    console.log(newValor);
+
+    return newValor;
+ */
+    this.dataSource.filter = filterValue;
   }
 
 

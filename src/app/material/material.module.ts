@@ -11,6 +11,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatRippleModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -23,7 +26,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatRippleModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatInputModule
+
   ],
   exports: [
     MatSidenavModule,
@@ -35,7 +41,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatRippleModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatInputModule
   ]
 })
 export class MaterialModule {
