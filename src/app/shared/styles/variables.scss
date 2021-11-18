@@ -1,1 +1,43 @@
+//Fuentes
 $fuente-principal: 'Red Rose', cursive; // or any global you wish to share with components
+
+//Colores
+$color-card: #262731;
+$color-oscuro: #1a1a1a;
+
+
+@mixin grid($columnas) {
+  display: grid;
+  grid-template-columns: repeat($columnas, 1fr);
+  margin-top: 20px;
+}
+
+//J
+@mixin caja {
+  background-color: $color-card;
+  box-shadow: 0px 2px 8px $color-oscuro;
+  border-radius: 10px;
+  height: 110px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: 70%;
+
+  .card__title{
+    border-bottom: 1px solid #ccc;
+    font-family: "Red Rose";
+    font-size:22px;
+    font-weight: 300;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 7%;
+    padding-bottom: px;
+    text-align: center;
+    width: 90%;
+  }
+
+  .card__content {
+    font-family: "Red Rose";
+    font-size: 25px;
+    text-align: center;
+  }
+}

@@ -21,8 +21,6 @@
   background-color: #fff !important;;
 }
 
-
-
 .mat-raised-button {
   margin-bottom: 10px;
 }
@@ -31,15 +29,17 @@
   border-radius: 10px;
   text-align: center;
   font-family: $fuente-principal;
-  width: 80%;
+  width: 96%;
+  margin: 0 auto;
 
   .mat-header-cell {
-    font-size: 19px;
+    font-size: 17px;
     text-align: center;
   }
 }
 
 .mat-paginator {
-  width: 80%;
+  width: 96%;
+  margin: 0 auto;
   margin-bottom: 20px;
 }

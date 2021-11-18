@@ -1,12 +1,10 @@
 @import "./../../../shared/styles/variables.scss";
 
 .cards {
-  width: 99%;
-  @include grid(3);
+  width: 70%;
+  @include grid(2);
+
   .card {
     @include caja;
-
   }
 }
-
-

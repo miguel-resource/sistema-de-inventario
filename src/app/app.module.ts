@@ -17,11 +17,15 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { ɵAngularFireSchedulers } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { DialogNotificationComponent } from './dialog-notification/dialog-notification.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    DialogNotificationComponent,
   ],
   imports: [
     RouterModule,

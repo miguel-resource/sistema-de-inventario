@@ -3,14 +3,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Notebook } from './../../../core/models/notebook.model'
 
-
 //Service
 import { NotebookService } from './../../../core/services/notebook/notebook.service'
 
 //Import
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
-import { async } from 'rxjs';
 @Component({
   selector: 'app-notebook',
   templateUrl: './notebook.component.html',
@@ -28,13 +26,9 @@ export class NotebookComponent implements OnInit {
   constructor(
     private notebookService: NotebookService,
     private dialog: MatDialog
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
-
-
     this.notebookService.getAll().subscribe((resp: any) => {
       this.notas = resp.map((e: any) => {
         return {
@@ -57,15 +51,9 @@ export class NotebookComponent implements OnInit {
 
   }
 
-
-
-
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-
   }
-
 
   dialogOpen():void {
     const dialogRef = this.dialog.open(DialogComponent);

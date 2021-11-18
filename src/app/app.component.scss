@@ -2,41 +2,40 @@
 .mat-sidenav {
   width: 170px;
   background-color: #0F1D23;
+
+  .mat-toolbar {
+    background-color: #0F1D23;
+    height: 130px;
+  }
+
+  .mat-nav-list ul li {
+    margin: 0 auto;
+    list-style: none;
+    font-family: $fuente-principal;
+    font-size: 18px;
+    width: 87%;
+    height: 36px;
+    line-height: 35px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+
+    i {
+      margin-right: 6px;
+      font-size:14px;
+      margin-left: 10px;
+    }
+
+  }
+
+  .mat-nav-list ul li:hover {
+    border-left: 2.3px solid #ccc;
+    background: rgba(255, 255, 255, 0.26);
+    cursor: pointer;
+  }
 }
 
-.mat-toolbar {
-  background-color: #0F1D23;
-  height: 130px;
-}
 
-.mat-nav-list ul li {
-  margin: 0 auto;
-  list-style: none;
-  font-family: $fuente-principal;
-  font-size: 18px;
-  width: 87%;
-  height: 36px;
-  line-height: 35px;
-  margin-bottom: 15px;
-  transition: all 0.3s;
-}
 
-.mat-nav-list ul .active {
-  border-left: 2.3px solid #ccc;
-  background: rgba(255, 255, 255, 0.26);
-}
-
-.mat-nav-list ul li:hover {
-  border-left: 2.3px solid #ccc;
-  background: rgba(255, 255, 255, 0.26);
-  cursor: pointer;
-}
-
-.mat-nav-list ul li i {
-  margin-right: 6px;
-  font-size:14px;
-  margin-left: 10px;
-}
 
 .user {
   margin: 0 auto;
@@ -112,9 +111,6 @@
 
 }
 
-
-
-
 @media (min-width: 320px) {
   .mat-sidenav-content .toolbar {
     width: 180px;
@@ -131,5 +127,7 @@
     width: 146px;
   }
 }
-@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1025px) {
+
+ }
 @media (min-width:1281px) { /* hi-res laptops and desktops */ }

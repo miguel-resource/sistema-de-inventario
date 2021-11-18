@@ -1,34 +1,9 @@
+@import "./../../../shared/styles/variables.scss";
+
 .cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin-top: 20px;
-}
+  @include grid(1);
+  .card {
+    @include caja;
 
-.card {
-  background-color: #262731;
-  box-shadow: 0px 2px 8px #1a1a1a;
-  border-radius: 10px;
-  height: 110px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  width: 70%;
-
-  .card__title{
-    border-bottom: 1px solid #ccc;
-    font-family: "Red Rose";
-    font-size:22px;
-    font-weight: 300;
-    margin: 0 auto;
-    margin-top: 5px;
-    margin-bottom: 7%;
-    padding-bottom: px;
-    text-align: center;
-    width: 90%;
-  }
-
-  .card__content {
-    font-family: "Red Rose";
-    font-size: 25px;
-    text-align: center;
   }
 }

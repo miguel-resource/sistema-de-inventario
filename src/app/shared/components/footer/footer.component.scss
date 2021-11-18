@@ -6,7 +6,8 @@
   display: grid;
   grid-template-columns: repeat(3,1fr);
   height: 45px;
-  width: 86%;
+  width: 95%;
+  margin: 0 auto;
 
   .footer__copy-right {
     font-family: $fuente-principal;
