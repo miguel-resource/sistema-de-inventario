@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./vendors/vendors.module').then(modules => modules.VendorsModule)
   },
   {
+    path: 'categorias',
+    loadChildren: () => import('./categories/categories.module').then(modules => modules.CategoriesModule)
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
   }

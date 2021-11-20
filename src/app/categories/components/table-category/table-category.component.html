@@ -1,0 +1,6 @@
+
+
+<mat-button-toggle-group #group="matButtonToggleGroup" name="favoriteColor" aria-label="Favorite Color" value="0">
+  <mat-button-toggle *ngFor="let item of categories" (click)="showCategoria(item.idFirebase)" value="{{ item.idFirebase }}">{{ item.name }}</mat-button-toggle>
+</mat-button-toggle-group>
+<div class="example-selected-value" *ngFor="let item of nombreCategoria">{{ item }}</div>

@@ -19,6 +19,10 @@ export class ProductsService {
     return  this.firestore.collection("products").doc(id).get();
   }
 
+  getCategory(id:string):any {
+    return this.firestore.collection("categories").doc(id).snapshotChanges();
+  }
+
   create(data: any):any {
     return this.firestore.collection("products").add(data);
   }

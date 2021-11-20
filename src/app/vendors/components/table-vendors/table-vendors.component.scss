@@ -1,3 +1,25 @@
+.mat-form-field {
+  display: block;
+  width: 30%;
+  color: #fff;
+  margin-left: 57px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #fff !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #fff !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #fff !important;;
+}
+
 .mat-table {
   width: 90%;
   margin: 0 auto;
