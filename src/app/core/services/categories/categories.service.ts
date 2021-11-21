@@ -18,8 +18,8 @@ export class CategoriesService {
     return  this.firestore.collection("categorio").doc(id).get();
   }
 
-  getProduct(id:string):any {
-    return this.firestore.collection("products").doc(id).get();
+  getCategory(id:string):any {
+    return this.firestore.collection("categories").doc(id).snapshotChanges();
   }
 
   create(data: any):any {
@@ -29,8 +29,7 @@ export class CategoriesService {
   update(id:string | undefined, data:any):any {
     return this.firestore.collection("cardsHome").doc(id).update(data);
   }
-
-  delete(id:string | undefined):any {
+   delete(id:string | undefined):any {
     return this.firestore.collection("cardsHome").doc(id).delete();
   }
 

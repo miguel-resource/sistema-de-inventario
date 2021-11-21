@@ -16,11 +16,11 @@ export class ProductsService {
   }
 
   get(id: string | undefined):any {
-    return  this.firestore.collection("products").doc(id).get();
+    return  this.firestore.collection("products").doc(id).snapshotChanges();
   }
 
-  getCategory(id:string):any {
-    return this.firestore.collection("categories").doc(id).snapshotChanges();
+  getByCategory(id:string):any {
+    return this.firestore.collection("products", ref => ref.where("category", "==", id)).snapshotChanges();
   }
 
   create(data: any):any {
@@ -31,7 +31,6 @@ export class ProductsService {
   update(id:string | undefined, data:any):any {
     return this.firestore.collection("products").doc(id).update(data);
   }
-
   delete(id:string | undefined):any {
     return this.firestore.collection("products").doc(id).delete();
   }

@@ -40,6 +40,7 @@ export class NotebookComponent implements OnInit {
       })
 
       this.dataSource = new MatTableDataSource(this.notas);
+      console.log(this.notas);
 
     }, (err: any) => {
       console.log(err);
