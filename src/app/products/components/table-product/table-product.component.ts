@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 
 import { ProductsService } from 'src/app/core/services/products/products.service';
+import { CategoriesService } from 'src/app/core/services/categories/categories.service';
 import { Product } from 'src/app/core/models/product.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,12 +18,14 @@ export class TableProductComponent implements OnInit {
 
   products: Product[] = [];
   displayedColumns: string[] = ['codeBar', 'name', 'price','percentDiscount','priceDiscount','count','minValue','category', 'date', 'actions'];
+  nameCategory:string = '';
   filterName = '';
 
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource!: MatTableDataSource<Product>;
   constructor(
     private productService: ProductsService,
+    private categoryService: CategoriesService,
     private dialog: MatDialog
   ) { }
 
@@ -41,16 +44,14 @@ export class TableProductComponent implements OnInit {
           date: e.payload.doc.data().dateInit,
         }
 
-
       });
       this.dataSource = new MatTableDataSource(this.products);
+      this.dataSource.paginator = this.paginator;
     }, (error:any) => {
       console.log(error);
     });
-  }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+
   }
 
   applyFilter(filterValue:string) {
@@ -58,6 +59,20 @@ export class TableProductComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
+
+  showCategory(idVale:string){
+    this.categoryService.get(idVale).subscribe((doc: any) => {
+      this.nameCategory = doc.payload.data().name
+      console.log(this.nameCategory)
+      return this.nameCategory.toString();
+    });
+  }
+
+  test(e:string) {
+    return e;
+  }
+
+
 
 
 }

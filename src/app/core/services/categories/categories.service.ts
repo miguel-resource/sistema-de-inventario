@@ -14,8 +14,8 @@ export class CategoriesService {
     return this.firestore.collection("categories").snapshotChanges();
   }
 
-  get(id: string | undefined):any {
-    return  this.firestore.collection("categorio").doc(id).get();
+  get(id: string ):any {
+    return  this.firestore.collection("categories").doc(id).snapshotChanges();
   }
 
   getCategory(id:string):any {

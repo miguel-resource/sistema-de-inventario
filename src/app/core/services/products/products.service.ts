@@ -9,7 +9,7 @@ export class ProductsService {
 
   constructor(
     private firestore: AngularFirestore
-  ) { }
+  ) {}
 
   getAll():any {
     return this.firestore.collection("products").snapshotChanges();

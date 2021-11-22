@@ -34,14 +34,11 @@ export class TableVendorsComponent implements OnInit {
         }
       });
       this.dataSource = new MatTableDataSource(this.vendors);
-
+      this.dataSource.paginator = this.paginator;
     }, (error: any) => {
       console.log(error);
-    })
-  }
+    });
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {
@@ -49,5 +46,6 @@ export class TableVendorsComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
+
 
 }

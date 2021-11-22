@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { throwIfEmpty } from 'rxjs';
 
 import { Category } from './../../../core/models/categories.model';
 import { Cate  } from './../../../core/models/category.model'
@@ -13,12 +16,15 @@ import { ProductsService } from './../../../core/services/products/products.serv
 })
 export class TableCategoryComponent implements OnInit {
 
-  categories: Category[] = [];
-  products: Product[] = [];
+  categories: Category[] = []; //mat-toggle categorias
+  products: Product[] = []; //mat-table products
+  displayedColumns : string [] = ['codeBar', 'name', 'price','percentDiscount','priceDiscount','count','minValue','category', 'date', 'actions'];
   nombreCategoria: string[] = [];
   variable: string = '';
   carro: string = "";
 
+  @ViewChild('paginator') paginator!: MatPaginator;
+  dataSource!: MatTableDataSource<Product>
 
   constructor(
     private categoryService: CategoriesService,
@@ -51,26 +57,26 @@ export class TableCategoryComponent implements OnInit {
           date: e.payload.doc.data().date
 
         }
-      })
+      });
+      this.dataSource = new MatTableDataSource(this.products);
+      this.dataSource.paginator = this.paginator;
     })
 
-    this.showCategoria('aND8wmHOD0q1TwNJYznx')
+/*     this.showCategory(this.carro);
+ */
 
   }
+
 
   inputFile(cadena:string):void {
     console.log(cadena);
   }
 
-  showCategoria(idCategory:any):any {
+ /*  showCategory(idCategory:any):any {
     this.categoryService.getCategory(idCategory).subscribe((doc:any) => {
-      this.nombreCategoria = doc.payload.data().products;
-      this.nombreCategoria.forEach((productId:any) => {
-        console.log(productId);
-      })
+      console.log(doc.payload.data().name);
     })
-
-  }
+  } */
 
   getProducts(id:any):any {
     this.productService.getByCategory(id).subscribe((resp:any) => {
@@ -91,6 +97,12 @@ export class TableCategoryComponent implements OnInit {
       console.log(this.products);
 
     })
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 
   test(value:any) {

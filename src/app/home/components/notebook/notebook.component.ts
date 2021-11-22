@@ -40,21 +40,17 @@ export class NotebookComponent implements OnInit {
       })
 
       this.dataSource = new MatTableDataSource(this.notas);
-      console.log(this.notas);
+      this.dataSource.paginator = this.paginator;
 
     }, (err: any) => {
       console.log(err);
     })
-
 
     this.data = this.notas;
     console.log(this.notas);
 
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
   dialogOpen():void {
     const dialogRef = this.dialog.open(DialogComponent);

@@ -8,3 +8,25 @@
     width: 100%;
   }
 }
+
+.mat-table {
+  width: 99%;
+  margin: 0 auto;
+  margin-top: 70px;
+
+  .mat-header-cell {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .mat-cell {
+    text-align: center;
+  }
+
+}
+
+.mat-paginator {
+  width: 99%;
+  margin: 0 auto;
+  margin-bottom: 250px;
+}
