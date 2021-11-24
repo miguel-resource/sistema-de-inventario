@@ -1,9 +1,13 @@
-<mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="carro" name="favoriteColor" aria-label="Favorite Color"   >
+<mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="subtitle" name="favoriteColor" aria-label="Favorite Color"   >
   <mat-button-toggle *ngFor="let item of categories" (change)="applyFilter(item.name)" value="{{ item.name }}">{{ item.name }}</mat-button-toggle>
 </mat-button-toggle-group>
-<div>
-  {{ carro }}
+
+<!-- TITLE -->
+<div class="title">
+  <h2 class="title__text">{{ subtitle }}</h2>
 </div>
+
+
 <table mat-table [dataSource]=dataSource class="mat-elevation-z8">
   <!-- CÓDIGO DE BARRA -->
   <ng-container matColumnDef="codeBar">

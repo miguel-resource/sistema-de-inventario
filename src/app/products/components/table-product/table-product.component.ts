@@ -31,6 +31,7 @@ export class TableProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getAll().subscribe((resp: any) => {
+      console.log(resp.length);
       this.products = resp.map((e:any) => {
         return {
           codeBar: e.payload.doc.data().codeBar,

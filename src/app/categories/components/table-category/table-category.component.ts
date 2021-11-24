@@ -20,8 +20,7 @@ export class TableCategoryComponent implements OnInit {
   products: Product[] = []; //mat-table products
   displayedColumns : string [] = ['codeBar', 'name', 'price','percentDiscount','priceDiscount','count','minValue','category', 'date', 'actions'];
   nombreCategoria: string[] = [];
-  variable: string = '';
-  carro: string = "";
+  subtitle: string = "";
 
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource!: MatTableDataSource<Product>
@@ -61,42 +60,10 @@ export class TableCategoryComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.products);
       this.dataSource.paginator = this.paginator;
     })
-
-/*     this.showCategory(this.carro);
- */
-
   }
-
 
   inputFile(cadena:string):void {
     console.log(cadena);
-  }
-
- /*  showCategory(idCategory:any):any {
-    this.categoryService.getCategory(idCategory).subscribe((doc:any) => {
-      console.log(doc.payload.data().name);
-    })
-  } */
-
-  getProducts(id:any):any {
-    this.productService.getByCategory(id).subscribe((resp:any) => {
-      this.products = resp.map((e:any) => {
-        return {
-          codeBar: e.payload.doc.data().codeBar,
-          name: e.payload.doc.data().name,
-          count: e.payload.doc.data().count,
-          price: e.payload.doc.data().price,
-          minValue: e.payload.doc.data().minValue,
-          percentDiscount: e.payload.doc.data().percentDiscount,
-          priceDiscount: e.payload.doc.data().priceDiscount,
-          category: e.payload.doc.data().category,
-          date: e.payload.doc.data().date
-        }
-      })
-
-      console.log(this.products);
-
-    })
   }
 
   applyFilter(filterValue: string) {
@@ -129,6 +96,5 @@ export class TableCategoryComponent implements OnInit {
       })
     })
   }
-
 
 }

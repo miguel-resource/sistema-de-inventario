@@ -47,8 +47,6 @@ export class NotebookComponent implements OnInit {
     })
 
     this.data = this.notas;
-    console.log(this.notas);
-
   }
 
 

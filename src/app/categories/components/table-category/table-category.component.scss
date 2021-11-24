@@ -9,6 +9,19 @@
   }
 }
 
+.title {
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 10px;
+  background-color: #1a1a1aa6;
+
+  &__text {
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
 .mat-table {
   width: 99%;
   margin: 0 auto;
@@ -28,5 +41,5 @@
 .mat-paginator {
   width: 99%;
   margin: 0 auto;
-  margin-bottom: 250px;
+  margin-bottom: 320px;
 }
