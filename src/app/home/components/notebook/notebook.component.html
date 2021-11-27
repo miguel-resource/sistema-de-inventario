@@ -4,7 +4,11 @@
   <input matInput  (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
 </mat-form-field>
 
-<button mat-raised-button color="accent" (click)="dialogOpen()"><i class='bx bx-note' ></i>Nueva venta</button>
+<div class="buttons">
+  <button mat-raised-button color="accent" (click)="dialogOpen()"><i class='bx bx-note' ></i>Nueva venta</button>
+  <button mat-raised-button color="primary"><i class='bx bx-box' ></i>Cerrar ventas</button>
+</div>
+
 <table mat-table [dataSource]=dataSource class="mat-elevation-z8">
 
   <!-- CANTIDAD -->
@@ -23,12 +27,6 @@
   <ng-container matColumnDef="Precio">
     <th mat-header-cell *matHeaderCellDef> Precio </th>
     <td mat-cell *matCellDef="let element"> $ {{element.price}} </td>
-  </ng-container>
-
-   <!-- HORA -->
-   <ng-container matColumnDef="Hora">
-    <th mat-header-cell *matHeaderCellDef> Hora </th>
-    <td mat-cell *matCellDef="let element"> {{element.hour*1000  | date: ' h:mm:ss a'}} </td>
   </ng-container>
 
 

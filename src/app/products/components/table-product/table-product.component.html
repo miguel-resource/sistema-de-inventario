@@ -2,6 +2,11 @@
   <input matInput  (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
 </mat-form-field>
 
+<div class="buttons">
+  <button class="buttons__createProduct" (click)="createProductDialog()"  mat-raised-button color="accent"><i class='bx bx-barcode'></i>Crear nuevo producto</button>
+  <button mat-raised-button color="warn" (click)="createCategoryDialog()"><i class='bx bx-qr'></i>Crear categoría</button>
+</div>
+
 <table mat-table [dataSource]=dataSource class="mat-elevation-z8">
   <!-- CÓDIGO DE BARRA -->
   <ng-container matColumnDef="codeBar">
@@ -54,7 +59,7 @@
   <!-- FECHA -->
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Fecha </th>
-    <td mat-cell *matCellDef="let element"> {{ element.date*1000 | date: 'dd/MM/yyyy' }} </td>
+    <td mat-cell *matCellDef="let element"> {{ element.date*1000 | date }} </td>
   </ng-container>
 
   <!-- ACCIONES -->
@@ -83,4 +88,3 @@
 
 <!-- PAGINADOR -->
 <mat-paginator #paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
-

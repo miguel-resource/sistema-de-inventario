@@ -8,13 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
+import { MatInputModule} from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule} from '@angular/material/form-field';
+ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +31,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatPaginatorModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     MatSidenavModule,
@@ -44,7 +50,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatPaginatorModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {

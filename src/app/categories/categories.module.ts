@@ -5,11 +5,13 @@ import { TableCategoryComponent } from './components/table-category/table-catego
 import { CategoriesRoutingModule } from './categories-routing.module'
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { DialogCategoryComponent } from './components/dialog-category/dialog-category.component';
 
 @NgModule({
   declarations: [
     CategoriesComponent,
     TableCategoryComponent,
+    DialogCategoryComponent
   ],
   imports: [
     CategoriesRoutingModule,

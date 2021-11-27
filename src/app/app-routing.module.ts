@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'ventas',
-    loadChildren: () => import('./shopping/shopping-routing.module').then(modules => modules.ShoppingRoutingModule)
+    loadChildren: () => import('./shopping/shopping.module').then(modules => modules.ShoppingModule)
   },
   {
     path: 'categorias',

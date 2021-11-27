@@ -8,6 +8,7 @@ import { MaterialModule } from './../material/material.module';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { TableVendorsComponent } from './components/table-vendors/table-vendors.component';
 
+
 @NgModule({
   declarations: [
     VendorsComponent,

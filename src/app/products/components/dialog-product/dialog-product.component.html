@@ -1,0 +1,53 @@
+<form [formGroup]="formProduct">
+  <mat-form-field appearance="outline">
+      <mat-label>Código de barras</mat-label>
+      <input matInput placeholder="000000000">
+      <mat-hint align="end">Mínimo 12 dígitos</mat-hint>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput >
+      <mat-icon matSuffix><i class='bx bxs-user'></i></mat-icon>
+  </mat-form-field>
+
+  <div class="values">
+    <mat-form-field appearance="outline">
+        <mat-label>Cant. inventario</mat-label>
+        <input matInput placeholder="0">
+        <mat-icon matSuffix><i class='bx bx-folder-minus'></i></mat-icon>
+        <mat-hint align="end">Cantidad de productos en inventario</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Min. cantidad</mat-label>
+        <input matInput type="number"  placeholder="0">
+        <mat-icon matSuffix><i class='bx bx-folder-minus'></i></mat-icon>
+        <mat-hint align="end">Mínima cantidad de productos en inventario</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number"  placeholder="00.00">
+        <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Porcentaje de descuento</mat-label>
+        <input matInput type="number" value="0">
+      <mat-icon matSuffix><i class='bx bxs-offer'></i></mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Categoría</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of categories" value="{{item}}">{{item}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Escoge una fecha</mat-label>
+      <input  matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary">Crear</button>
+</form>

@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DialogProductComponent } from './../dialog-product/dialog-product.component'
+import { DialogCategoryComponent  } from './../dialog-category/dialog-category.component'
 
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { CategoriesService } from 'src/app/core/services/categories/categories.service';
 import { Product } from 'src/app/core/models/product.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { filter } from 'rxjs';
+
 
 @Component({
   selector: 'app-table-product',
@@ -26,7 +27,7 @@ export class TableProductComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private categoryService: CategoriesService,
-    private dialog: MatDialog
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -72,6 +73,18 @@ export class TableProductComponent implements OnInit {
   test(e:string) {
     return e;
   }
+
+
+  createProductDialog():void {
+    const dialogRef = this.dialog.open(DialogProductComponent, {
+      width: '800px'
+    });
+  }
+
+  createCategoryDialog():void {
+    const dialogRef = this.dialog.open(DialogCategoryComponent);
+  }
+
 
 
 

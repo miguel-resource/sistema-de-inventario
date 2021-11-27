@@ -17,7 +17,7 @@ import { DialogComponent } from './dialog/dialog.component';
 export class NotebookComponent implements OnInit {
 
   notas: Notebook[] = [];
-  displayedColumns: string[] = ['Cantidad', 'Nombre', 'Precio', 'Hora','Acciones'];
+  displayedColumns: string[] = ['Cantidad', 'Nombre', 'Precio','Acciones'];
   filterName = '';
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource!: MatTableDataSource<Notebook>;
