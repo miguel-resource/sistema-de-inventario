@@ -5,7 +5,6 @@ import { Notebook } from './../../../core/models/notebook.model'
 
 //Service
 import { NotebookService } from './../../../core/services/notebook/notebook.service'
-
 //Import
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
@@ -52,7 +51,7 @@ export class NotebookComponent implements OnInit {
 
   createNote():void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '900px'
+      width: '1200px'
     });
   }
 

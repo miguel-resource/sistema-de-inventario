@@ -1,32 +1,64 @@
-form {
+.dialog-note {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 5px;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 10px;
 
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 5px;
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    ::ng-deep .mat-focused .mat-form-field-label {
+      /*change color of label*/
+      color: #fff !important;
+    }
+
+    ::ng-deep.mat-form-field-underline {
+      /*change color of underline*/
+      background-color: #fff !important;
+    }
+
+    ::ng-deep.mat-form-field-ripple {
+      /*change color of underline when focused*/
+      background-color: #fff !important;
+    }
+
+    .form-search {
+      display: grid;
+      grid-template-columns: 90% 10%;
+      grid-gap: 3px;
+
+      .form__search--button {
+        background-color: #1a1a1a;
+        margin-top:14px;
+
+        i {
+          color: #fff
+        }
+      }
+
+
+    }
+
+    .form-count {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 4px;
+    }
   }
 
-  input[type=number] {
-    -moz-appearance: textfield;
+  table {
+    width: 100%;
+    text-align: center;
   }
-
-  ::ng-deep .mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color: #fff !important;
-  }
-
-  ::ng-deep.mat-form-field-underline {
-    /*change color of underline*/
-    background-color: #fff !important;
-  }
-
-  ::ng-deep.mat-form-field-ripple {
-    /*change color of underline when focused*/
-    background-color: #fff !important;
-  }
-
-
 }
