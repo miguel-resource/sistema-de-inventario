@@ -3,12 +3,14 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { throwIfEmpty } from 'rxjs';
-
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DialogCategoryComponent } from './../dialog-category/dialog-category.component'
 import { Category } from './../../../core/models/categories.model';
 import { Cate  } from './../../../core/models/category.model'
 import { Product } from './../../../core/models/product.model'
 import { CategoriesService } from './../../../core/services/categories/categories.service';
 import { ProductsService } from './../../../core/services/products/products.service';
+
 @Component({
   selector: 'app-table-category',
   templateUrl: './table-category.component.html',
@@ -28,6 +30,7 @@ export class TableCategoryComponent implements OnInit {
   constructor(
     private categoryService: CategoriesService,
     private productService: ProductsService,
+    public dialog: MatDialog
   ) {
   }
 
@@ -95,6 +98,12 @@ export class TableCategoryComponent implements OnInit {
         })
       })
     })
+  }
+
+  createCategoryDialog():void {
+    const dialogRef = this.dialog.open(DialogCategoryComponent, {
+      width: '400px'
+    });
   }
 
 }

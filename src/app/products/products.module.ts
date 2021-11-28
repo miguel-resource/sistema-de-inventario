@@ -7,7 +7,6 @@ import { TableProductComponent } from './components/table-product/table-product.
 import { FeaturedComponent } from './components/featured/featured.component';
 import { MaterialModule } from './../material/material.module';
 import { DialogProductComponent } from './components/dialog-product/dialog-product.component';
-import { DialogCategoryComponent } from './components/dialog-category/dialog-category.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { DialogCategoryComponent } from './components/dialog-category/dialog-cat
     TableProductComponent,
     FeaturedComponent,
     DialogProductComponent,
-    DialogCategoryComponent,
   ],
   imports: [
     ProductsRoutingModule,

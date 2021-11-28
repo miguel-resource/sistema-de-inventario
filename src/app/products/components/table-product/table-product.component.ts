@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { DialogProductComponent } from './../dialog-product/dialog-product.component'
-import { DialogCategoryComponent  } from './../dialog-category/dialog-category.component'
 
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { CategoriesService } from 'src/app/core/services/categories/categories.service';
@@ -80,13 +79,4 @@ export class TableProductComponent implements OnInit {
       width: '800px'
     });
   }
-
-  createCategoryDialog():void {
-    const dialogRef = this.dialog.open(DialogCategoryComponent);
-  }
-
-
-
-
-
 }

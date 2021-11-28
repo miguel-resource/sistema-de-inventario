@@ -42,7 +42,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <div class="date">
-        <p class="date__text"><i class='bx bxs-calendar'></i>31/12/2021</p>
+        <p class="date__text"><i class='bx bxs-calendar'></i>{{date | date: 'dd/MMM/yyyy'}}</p>
       </div>
       <div class="notification">
         <mat-icon (click)="dialogOpen()" mat-icon-button matBadge="2" matBadgeColor="warn"><i class='bx bxs-bell'></i></mat-icon>

@@ -50,8 +50,10 @@ export class NotebookComponent implements OnInit {
   }
 
 
-  dialogOpen():void {
-    const dialogRef = this.dialog.open(DialogComponent);
+  createNote():void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '900px'
+    });
   }
 
   applyFilter(filterValue:string) {

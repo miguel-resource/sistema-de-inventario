@@ -14,18 +14,25 @@ import { DialogNotificationComponent } from './dialog-notification/dialog-notifi
 export class AppComponent {
   title = 'inventory-system';
   centered = false;
+  date = Date.now();
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     public router: Router,
     private dialog: MatDialog
-  ){}
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-  .pipe(
-    map(result => result.matches),
-    shareReplay()
-  );
+  ) { }
 
-  dialogOpen():void {
+  ngOnInit() {
+
+  }
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
+  dialogOpen(): void {
     const dialogRef = this.dialog.open(DialogNotificationComponent);
   }
 }

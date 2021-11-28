@@ -1,6 +1,9 @@
 <mat-form-field>
   <input matInput  (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
 </mat-form-field>
+
+<button mat-raised-button color="primary">Añadir nuevo provedor</button>
+
 <table mat-table [dataSource]=dataSource class="mat-elevation-z8">
   <!-- NOMBRE DE LA EMPRESA -->
   <ng-container matColumnDef="name">
