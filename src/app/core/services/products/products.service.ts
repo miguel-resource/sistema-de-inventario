@@ -15,7 +15,7 @@ export class ProductsService {
     return this.firestore.collection("products").snapshotChanges();
   }
 
-  get(id: string | undefined):any {
+  get(id: number):any {
     return  this.firestore.collection("products", ref => ref.where("codeBar", "==", id)).snapshotChanges();
   }
 

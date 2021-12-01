@@ -41,20 +41,27 @@ export class DialogProductComponent implements OnInit {
       this.categories = resp.map((e:any) => {
         return e.payload.doc.data().name;
       });
-
-      
     })
 
   }
 
 
-  createProduct() {
+  createProduct():void {
     this.productsService.create(this.formProduct.value).then((product:any) => {
       this.formProduct.reset();
       this.dialogRef.close();
     }).catch((error:any) => {
       console.error(error);
     })
+  }
+
+  generateCode():void {
+    this.formProduct.controls['codeBar'].setValue(Math.floor(Math.random()*200000000000)+9600000000000);
+  }
+
+  changePrice():void {
+    let price = this.formProduct.controls['price'].value;
+    let
   }
 
 }

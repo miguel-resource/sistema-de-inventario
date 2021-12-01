@@ -1,13 +1,16 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder,FormGroup, Validators } from '@angular/forms'
+import { FormBuilder,FormGroup , FormControl, Validators } from '@angular/forms'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 //SERVICIOS Y MODELOS
 import { ProductsService } from './../../../../core/services/products/products.service'
+import { CarShopService } from './../../../../core/services/carShop/car-shop.service'
+import { NotebookService } from './../../../../core/services/notebook/notebook.service'
 import { Notebook } from './../../../../core/models/notebook.model';
 import { CarShop } from './../../../../core/models/car-shop.model';
+
 
 @Component({
   selector: 'app-dialog',
@@ -16,50 +19,58 @@ import { CarShop } from './../../../../core/models/car-shop.model';
 })
 export class DialogComponent implements OnInit {
   formNotebook: FormGroup = new FormGroup({});
-  displayedColumns: string[] = ['code', 'name', 'count', 'price', 'discount', 'total'];
+  formChange: FormGroup = new FormGroup({});
+  displayedColumns: string[] = ['code', 'name', 'count', 'price', 'discount', 'total', 'actions'];
   dataSource!: MatTableDataSource<CarShop>;
-  @ViewChild('paginator') paginator!: MatPaginator;
   carShop: CarShop[] = [];
-  productForm!: CarShop
+  productForm!: CarShop;
+
+  totalTable: number[] = [];
+  total: number = 0;
+  totalChange: number = 0;
+
+
+  @ViewChild('paginator') paginator!: MatPaginator;
 
 
   constructor(
     private productsService: ProductsService,
+    private carShopService: CarShopService,
+    private notebookService: NotebookService,
     private formBuilder: FormBuilder,
     private dialogRef:  MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Notebook
   ) { }
 
   ngOnInit(): void {
-    this.carShop = [
-      {
-        code: 123456789,
-        name: 'Producto de testeo',
-        count: 2,
-        price: 300,
-        percentDiscount: 0,
-        total: 10,
-      },
-      {
-        code: 123456789,
-        name: 'Producto de testeo',
-        count: 2,
-        price: 300,
-        percentDiscount: 0,
-        total: 10,
-      },
-      {
-        code: 123456789,
-        name: 'Producto de testeo',
-        count: 2,
-        price: 300,
-        percentDiscount: 0,
-        total: 10,
-      }
-    ];
+    this.carShopService.getAll().subscribe((resp:any) => {
+      this.carShop = resp.map((e :any) => {
+        return {
+          code: e.payload.doc.data().code,
+          name: e.payload.doc.data().name,
+          count: e.payload.doc.data().count,
+          price: e.payload.doc.data().price,
+          percentDiscount: e.payload.doc.data().percentDiscount,
+          total: e.payload.doc.data().total
+        }
+      })
+      this.dataSource = new MatTableDataSource(this.carShop);
+      this.dataSource.paginator  = this.paginator;
+    })
 
-    this.dataSource = new MatTableDataSource(this.carShop);
-    this.dataSource.paginator  = this.paginator;
+    /*Sumar todos los valores totales de la tabla*/
+    this.carShopService.getAll().subscribe((resp: any) => {
+      this.totalTable = resp.map((e:any) => {
+        return e.payload.doc.data().total;
+      });
+
+      this.totalTable.forEach((item:any) => {
+        this.total += item;
+      })
+
+      console.log(this.total);
+    })
+
 
     this.formNotebook = this.formBuilder.group({
       codeBar: ['', Validators.required],
@@ -69,26 +80,91 @@ export class DialogComponent implements OnInit {
       percentDiscount: ['', Validators.required],
       total: ['', Validators.required]
     });
-  }
 
-
-  searchProduct() {
-    let id = this.formNotebook.controls['codeBar'].value
-    this.productsService.get(id).subscribe((resp:any) => {
-      this.productForm = resp[0].payload.doc.data();
-      let name = this.productForm.name;
-      let price = this.productForm.price;
-      let percentDiscount = this.productForm.percentDiscount;
-
-      this.formNotebook.controls['name'].setValue(name);
-      this.formNotebook.controls['price'].setValue(price);
-      this.formNotebook.controls['percentDiscount'].setValue(percentDiscount);
-      this.formNotebook.controls['count'].setValue(1);
+    this.formChange = this.formBuilder.group({
+      change: ['', Validators.required]
     });
   }
 
-  test(event:any):void {
-    console.log(event)
+  /*Busca todos productos dentro de la base de datos*/
+  searchProduct() {
+    let id = parseInt(this.formNotebook.controls['codeBar'].value);
+    this.productsService.get(id).subscribe((resp:any) => {
+      this.productForm = resp[0].payload.doc.data();
+      this.formNotebook.controls['count'].setValue(1);
+      
+      let count = this.formNotebook.controls['count'].value;
+      let name = this.productForm.name;
+      let price = this.productForm.price;
+      let percent = this.productForm.percentDiscount;
+      let percentDiscount = percent/100;
+      let total = (price-(price*percentDiscount))*count;
+
+      this.formNotebook.controls['name'].setValue(name);
+      this.formNotebook.controls['price'].setValue(price);
+      this.formNotebook.controls['percentDiscount'].setValue(percent);
+      this.formNotebook.controls['total'].disable();
+      this.formNotebook.controls['total'].setValue(total);
+    });
+  }
+
+  updatePrice():void {
+    let count = this.formNotebook.controls['count'].value;
+    let price = this.productForm.price;
+    let percent = this.productForm.percentDiscount;
+    let percentDiscount = percent/100;
+    let total = (price-(price*percentDiscount))*count;
+
+    console.log(total);
+    this.formNotebook.controls['total'].setValue(total);
+  }
+
+  addProduct():void {
+    let product = {
+      code: this.formNotebook.controls['codeBar'].value,
+      name: this.formNotebook.controls['name'].value,
+      count: this.formNotebook.controls['count'].value,
+      price: this.formNotebook.controls['price'].value,
+      percentDiscount: this.formNotebook.controls['percentDiscount'].value,
+      total: this.formNotebook.controls['total'].value,
+    }
+    this.total = 0;
+    this.carShopService.create(product).then(() => {
+      this.formNotebook.reset();
+      this.updateTotal();
+      this.total = 0;
+    })
+
+  }
+
+  updateTotal():void {
+    let change = this.formChange.controls['change'].value;
+    console.log(change);
+
+    this.totalChange = change - this.total;
+
+    if(this.totalChange <= 0) {
+      this.totalChange = 0;
+    }
+  }
+
+  delateAll():void {
+    this.carShopService.delete().subscribe((resp:any) => {
+      resp.forEach((item:any) => {
+        item.ref.delete();
+      });
+      this.dialogRef.close();
+    })
+  }
+
+  acceptPay():void {
+    let tableData = this.dataSource.data;
+    tableData.forEach((item:any) => {
+      this.notebookService.create(item).then(() => {
+        this.delateAll();
+      });
+    });
+    this.dialogRef.close();
   }
 
 }

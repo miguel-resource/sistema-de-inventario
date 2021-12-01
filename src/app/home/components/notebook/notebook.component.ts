@@ -16,7 +16,15 @@ import { DialogComponent } from './dialog/dialog.component';
 export class NotebookComponent implements OnInit {
 
   notas: Notebook[] = [];
-  displayedColumns: string[] = ['Cantidad', 'Nombre', 'Precio','Acciones'];
+  displayedColumns: string[] = [
+    'code',
+    'name',
+    'count',
+    'price',
+    'percentDiscount',
+    'total',
+    'actions'
+  ];
   filterName = '';
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource!: MatTableDataSource<Notebook>;
@@ -31,10 +39,12 @@ export class NotebookComponent implements OnInit {
     this.notebookService.getAll().subscribe((resp: any) => {
       this.notas = resp.map((e: any) => {
         return {
-          count: e.payload.doc.data().count,
+          code: e.payload.doc.data().code,
           name: e.payload.doc.data().name,
+          count: e.payload.doc.data().count,
           price: e.payload.doc.data().price,
-          hour: e.payload.doc.data().hour,
+          percentDiscount: e.payload.doc.data().percentDiscount,
+          total: e.payload.doc.data().total
         }
       })
 

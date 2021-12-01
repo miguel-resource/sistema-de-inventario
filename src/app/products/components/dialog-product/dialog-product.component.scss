@@ -34,8 +34,8 @@ form {
     grid-gap: 5px;
   }
 
-  button {
-    background-color: #0A1418;
+  .createButton {
+    background-color: #1a1a1a;
     width: 20%;
     font-size: 18px;
 
@@ -44,4 +44,11 @@ form {
       margin-right: 5px;
     }
   }
+}
+
+
+.generateCode {
+  width: 35%;
+  background-color: #559d9e;
+  margin-top: 10px;
 }

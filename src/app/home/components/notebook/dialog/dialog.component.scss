@@ -1,9 +1,10 @@
 .dialog-note {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: 0.5fr 1.5fr;
   grid-gap: 10px;
 
   form {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 5px;
@@ -50,6 +51,11 @@
 
     }
 
+    .addProduct {
+      background: #1a1a1a;
+      width: 40%;
+    }
+
     .form-count {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -57,8 +63,38 @@
     }
   }
 
-  table {
-    width: 100%;
-    text-align: center;
+
+  .table__order {
+    table {
+      width: 100%;
+      text-align: center;
+
+      .mat-header-cell {
+        font-size: 15px;
+        text-align: center;
+      }
+
+      .mat-cell {
+        text-align: center;
+      }
+    }
+
+    .mat-paginator {
+      margin-top: 3px;
+    }
   }
+
+  .table__pay {
+    width: 80%;
+
+    h3 {
+      margin-bottom: 5px;
+    }
+
+    .table__pay--buttons {
+      float: right;
+      margin-bottom: 10px;
+    }
+  }
+
 }

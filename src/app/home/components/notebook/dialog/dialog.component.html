@@ -2,8 +2,8 @@
   <form [formGroup]="formNotebook">
     <div class="form-search">
       <mat-form-field appearance="outline">
-          <mat-label>Código de barras</mat-label>
-          <input matInput formControlName="codeBar" placeholder="000000000">
+        <mat-label>Código de barras</mat-label>
+        <input matInput formControlName="codeBar" placeholder="000000000">
       </mat-form-field>
       <button mat-mini-fab (click)="searchProduct()" class="form__search--button">
         <mat-icon><i class='bx bx-search-alt'></i></mat-icon>
@@ -11,37 +11,42 @@
     </div>
 
     <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name">
-        <mat-icon matSuffix><i class='bx bxs-user'></i></mat-icon>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+      <mat-icon matSuffix><i class='bx bxs-user'></i></mat-icon>
     </mat-form-field>
 
     <div class="form-count">
       <mat-form-field appearance="outline">
-          <mat-label>Cantidad</mat-label>
-          <input matInput (change)="test($event)" formControlName="count" >
+        <mat-label>Cantidad</mat-label>
+        <input matInput (keyup)="updatePrice()" formControlName="count" value="1">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-          <mat-label>Precio</mat-label>
-          <input matInput type="number" formControlName="price"  placeholder="00.00">
-          <span matPrefix>$&nbsp;</span>
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" formControlName="price" placeholder="00.00">
+        <span matPrefix>$&nbsp;</span>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-          <mat-label>Porcentaje de descuento</mat-label>
-          <input matInput  formControlName="percentDiscount" >
+        <mat-label>Porcentaje de descuento</mat-label>
+        <input matInput formControlName="percentDiscount">
         <mat-icon matSuffix><i class='bx bxs-offer'></i></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Total</mat-label>
+        <input matInput formControlName="total">
+        <mat-icon matSuffix><i class='bx bxs-badge-dollar'></i></mat-icon>
       </mat-form-field>
     </div>
 
 
-
-    <button mat-raised-button>Ingresar producto</button>
+    <button class="addProduct" [disabled]="!formNotebook.valid" (click)="addProduct()" mat-raised-button>Añadir producto</button>
   </form>
 
   <!--TABLA DE PRODUCTOS POR CLIENTE-->
-  <div>
+  <div class="table__order">
     <table [dataSource]="dataSource" mat-table class="mat-elevation-z8">
 
       <!--Código de barras-->
@@ -53,11 +58,11 @@
       <!--Nombre-->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.name | slice: 0: 10}}</td>
       </ng-container>
 
       <ng-container matColumnDef="count">
-        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <th mat-header-cell *matHeaderCellDef>Cant.</th>
         <td mat-cell *matCellDef="let element">{{ element.count }}</td>
       </ng-container>
 
@@ -70,7 +75,7 @@
       <!--Descuento-->
       <ng-container matColumnDef="discount">
         <th mat-header-cell *matHeaderCellDef>Descuento</th>
-        <td mat-cell *matCellDef="let element">{{ element.discount }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.percentDiscount }}%</td>
       </ng-container>
 
       <!--Total-->
@@ -79,9 +84,53 @@
         <td mat-cell *matCellDef="let element">{{ element.total }}</td>
       </ng-container>
 
+      <!--Total-->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button class="warn" mat-menu-item>
+              <mat-icon style="color: rgb(122, 24, 24)">delete</mat-icon>
+              <span style="color: rgb(122, 24, 24)">Borrar</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+
+    <!-- PAGINADOR -->
+    <mat-paginator #paginator [pageSizeOptions]="[2,4]" showFirstLastButtons></mat-paginator>
+
+    <!--Cantidad total por todos los productos-->
+    <div class="table__pay">
+
+      <h3>Total: {{ total | currency }}</h3>
+      <h3>Cambio: {{totalChange | currency }} </h3>
+      <form [formGroup]="formChange">
+        <mat-form-field appearance="outline">
+          <mat-label>Paga con: </mat-label>
+          <input matInput (keyup)="updateTotal()" formControlName="change" type="number">
+        </mat-form-field>
+        <div class="table__pay--buttons">
+          <button mat-button [disabled]="!formChange.valid" (click)="acceptPay()">Comprar</button>
+          <button (click)="delateAll()" mat-button color="warn">Cancelar</button>
+        </div>
+      </form>
+
+    </div>
+
   </div>
+
 
 </div>
