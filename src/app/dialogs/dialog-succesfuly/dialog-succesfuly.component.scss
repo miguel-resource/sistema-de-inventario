@@ -1,0 +1,14 @@
+.dialog-successfully {
+  display: grid;
+  grid-template-columns: 19% 81%;
+
+  i {
+    color: rgb(104, 153, 104);
+    font-size: 32px;
+  }
+
+  h4 {
+    line-height: 33px;
+    font-size: 19px;
+  }
+}

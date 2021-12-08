@@ -4,9 +4,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TableCategoryComponent } from './components/table-category/table-category.component';
 import { CategoriesRoutingModule } from './categories-routing.module'
 import { MaterialModule } from '../material/material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DialogCategoryComponent } from './components/dialog-category/dialog-category.component';
-
 @NgModule({
   declarations: [
     CategoriesComponent,
@@ -17,6 +16,7 @@ import { DialogCategoryComponent } from './components/dialog-category/dialog-cat
     CategoriesRoutingModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule
   ]
 })

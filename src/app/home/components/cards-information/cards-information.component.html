@@ -4,7 +4,7 @@
       <h3>Ventas del día</h3>
     </div>
     <div class="card__content">
-      <p>$10,000</p>
+      <p>{{ total | currency }}</p>
     </div>
   </div>
   <div class="card">
@@ -12,7 +12,7 @@
       <h3>Categorías</h3>
     </div>
     <div class="card__content">
-      <p>10</p>
+      <p>{{ totalCategories }}</p>
     </div>
   </div>
 
@@ -21,7 +21,7 @@
       <h3>Productos</h3>
     </div>
     <div class="card__content">
-      <p>300</p>
+      <p>{{ totalProducts }}</p>
     </div>
   </div>
 

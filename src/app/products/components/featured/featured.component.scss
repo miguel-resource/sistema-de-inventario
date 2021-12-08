@@ -3,6 +3,7 @@
 .cards {
   width: 99%;
   @include grid(3);
+
   .card {
     @include caja;
 

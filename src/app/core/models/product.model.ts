@@ -7,5 +7,5 @@ export interface Product {
   percentDiscount: number;
   priceDiscount: number;
   category: string;
-  date: number;
+  date: string;
 }

@@ -1,0 +1,43 @@
+<div class="table__shopping">
+  <table mat-table [dataSource]=dataSource class="mat-elevation-z8">
+    <!-- NOMBRE -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element "> {{element.name}} </td>
+    </ng-container>
+
+    <!-- CANTIDAD -->
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let element "> {{element.count}} </td>
+    </ng-container>dmmiguelbercru
+
+    <!-- PRECIO -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let element "> {{ element.price | currency }} </td>
+    </ng-container>
+
+    <!-- PORCENTAJE DE DESCUENTO -->
+    <ng-container matColumnDef="percentDiscount">
+      <th mat-header-cell *matHeaderCellDef> % Descuento </th>
+      <td mat-cell *matCellDef="let element "> {{element.percentDiscount}}% </td>
+    </ng-container>
+
+    <!-- FECHA -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Hora </th>
+      <td mat-cell *matCellDef="let element "> {{element.date | date: 'hh:mm a'}} </td>
+    </ng-container>
+
+    <!-- TOTAL -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let element "> {{ element.total | currency }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>

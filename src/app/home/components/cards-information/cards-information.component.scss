@@ -2,6 +2,7 @@
 
 .cards {
   @include grid(1);
+
   .card {
     @include caja;
 

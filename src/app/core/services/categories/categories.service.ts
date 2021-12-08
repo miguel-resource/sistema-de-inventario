@@ -23,7 +23,7 @@ export class CategoriesService {
   }
 
   create(data: any):any {
-    return this.firestore.collection("categorio").add(data);
+    return this.firestore.collection("categories").add(data);
   }
 
   update(id:string | undefined, data:any):any {

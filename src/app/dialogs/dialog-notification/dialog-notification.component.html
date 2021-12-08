@@ -1,0 +1,15 @@
+<div class="notifications">
+  <div class="notification" *ngFor="let notification of notifications">
+    <div class="notification__logo">
+      <i class='bx bx-receipt'></i>
+    </div>
+    <div class="notification__information">
+      <h4>Alerta de faltantes</h4>
+      <span>{{ notification.date| date }}</span>
+      <p>{{ notification.information }}</p>
+    </div>
+    <div class="notification__state">
+      <button mat-mini-fab><mat-icon>clear</mat-icon></button>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,7 @@
-<form>
+<form [formGroup]="formCategory">
   <mat-form-field appearance="outline">
       <mat-label>Nombre de la categoría</mat-label>
-      <input matInput >
+      <input matInput formControlName="name" >
   </mat-form-field>
-
-  <button mat-raised-button>Crear</button>
+  <button [disabled]="!formCategory.valid" (click)="createCategory()" mat-raised-button>Crear</button>
 </form>

@@ -4,5 +4,6 @@ export interface CarShop {
   count: number;
   price: number;
   percentDiscount: number;
+  date: string;
   total: number;
 }

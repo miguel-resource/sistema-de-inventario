@@ -6,7 +6,7 @@
 }
 
 
-button {
+.buttons--createProduct {
   width: 18%;
   margin-left: 8px;
   margin-bottom: 30px;
@@ -17,25 +17,34 @@ button {
   }
 }
 
-.mat-table {
-  width: 99%;
-  margin: 0 auto;
-
-  .mat-header-cell {
-    font-size: 17px;
-    text-align: center;
-  }
-
-  .mat-cell {
-    text-align: center;
-  }
-
+.mat-button-toggle-group {
+  margin-left: 5px;
+  margin-bottom: 15px;
 }
 
+.table--products {
+  min-height: 150px;
+  max-height: 350px;
+  margin-bottom: 30px;
+  scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+  overflow: auto;
 
-.mat-paginator {
-  width: 99%;
-  margin: 0 auto;
-  margin-bottom: 250px;
+  .mat-table {
+    width: 99%;
+    margin: 0 auto;
 
+    .mat-header-cell {
+      font-size: 15px;
+    }
+
+
+  }
+
+
+  .mat-paginator {
+    width: 99%;
+    margin: 0 auto;
+    margin-bottom: 250px;
+
+  }
 }

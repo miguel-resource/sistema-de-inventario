@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { DialogProductComponent } from './../dialog-product/dialog-product.component'
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogProductComponent } from '../../../dialogs/dialog-product/dialog-product.component'
 
+/* Servicios */
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { CategoriesService } from 'src/app/core/services/categories/categories.service';
+
+/* Modelos */
+import { Category } from './../../../core/models/categories.model'
+
 import { Product } from 'src/app/core/models/product.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,8 +22,10 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TableProductComponent implements OnInit {
 
   products: Product[] = [];
-  displayedColumns: string[] = ['codeBar', 'name', 'price','percentDiscount','priceDiscount','count','minValue','category', 'date', 'actions'];
-  nameCategory:string = '';
+  producsSort: Product[] = [];
+  categories: Category[] = [];
+  displayedColumns: string[] = ['codeBar', 'name', 'price', 'percentDiscount', 'priceDiscount', 'count', 'minValue', 'category', 'date', 'actions'];
+  nameCategory: string = '';
   filterName = '';
 
   @ViewChild('paginator') paginator!: MatPaginator;
@@ -32,36 +39,51 @@ export class TableProductComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAll().subscribe((resp: any) => {
       console.log(resp.length);
-      this.products = resp.map((e:any) => {
+      this.products = resp.map((e: any) => {
         return {
           codeBar: e.payload.doc.data().codeBar,
           name: e.payload.doc.data().name,
           count: e.payload.doc.data().count,
           price: e.payload.doc.data().price,
-          minValue:  e.payload.doc.data().minValue,
+          minValue: e.payload.doc.data().minValue,
           percentDiscount: e.payload.doc.data().percentDiscount,
           priceDiscount: e.payload.doc.data().priceDiscount,
           category: e.payload.doc.data().category,
-          date: e.payload.doc.data().dateInit,
+          date: e.payload.doc.data().date,
         }
 
       });
       this.dataSource = new MatTableDataSource(this.products);
+      this.producsSort = this.products;
       this.dataSource.paginator = this.paginator;
-    }, (error:any) => {
+    }, (error: any) => {
       console.log(error);
     });
 
 
+    this.categoryService.getAll().subscribe((resp: any) => {
+      this.categories = resp.map((e: any) => {
+        return {
+          idFirebase: e.payload.doc.id,
+          name: e.payload.doc.data().name
+        }
+      })
+    })
+
+
   }
 
-  applyFilter(filterValue:string) {
+  applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
-  showCategory(idVale:string){
+  cancellFilter(): void {
+    this.dataSource.filter = "Central"; //Común denomiador xd
+  }
+
+  showCategory(idVale: string) {
     this.categoryService.get(idVale).subscribe((doc: any) => {
       this.nameCategory = doc.payload.data().name
       console.log(this.nameCategory)
@@ -69,14 +91,14 @@ export class TableProductComponent implements OnInit {
     });
   }
 
-  test(e:string) {
+  test(e: string) {
     return e;
   }
 
 
-  createProductDialog():void {
+  createProductDialog(): void {
     const dialogRef = this.dialog.open(DialogProductComponent, {
-      width: '800px'
+      width: '1000px'
     });
   }
 }

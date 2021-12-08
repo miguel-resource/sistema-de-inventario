@@ -16,13 +16,19 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AngularFireModule } from '@angular/fire/compat';
 import { ɵAngularFireSchedulers } from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { DialogNotificationComponent } from './dialog-notification/dialog-notification.component';
+import { DialogNotificationComponent } from './dialogs/dialog-notification/dialog-notification.component';
+import { DialogSuccesfulyComponent } from './dialogs/dialog-succesfuly/dialog-succesfuly.component';
+import { DialogShoppingComponent } from './dialogs/dialog-shopping/dialog-shopping.component';
+import { DialogCategoriesComponent } from './dialogs/dialog-categories/dialog-categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     DialogNotificationComponent,
+    DialogSuccesfulyComponent,
+    DialogShoppingComponent,
+    DialogCategoriesComponent,
   ],
   imports: [
     RouterModule,

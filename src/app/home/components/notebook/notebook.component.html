@@ -1,77 +1,66 @@
-
-
 <mat-form-field>
-  <input matInput  (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
+  <input matInput (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
 </mat-form-field>
 
 <div class="buttons">
-  <button mat-raised-button color="accent" (click)= "createNote()"><i class='bx bx-note' ></i>Nueva venta</button>
-  <button mat-raised-button color="primary"><i class='bx bx-box' ></i>Cerrar ventas</button>
+  <button mat-raised-button color="accent" (click)="createNote()"><i class='bx bx-note'></i>Nueva venta</button>
+  <button mat-raised-button color="primary" (click)="createShop()"><i class='bx bx-box'></i>Cerrar ventas</button>
 </div>
 
-<table mat-table [dataSource]=dataSource class="mat-elevation-z8">
 
-  <!-- CÓDIGO -->
-  <ng-container matColumnDef="code">
-    <th mat-header-cell *matHeaderCellDef> Código </th>
-    <td mat-cell *matCellDef="let element "> {{element.code}} </td>
-  </ng-container>
+<div class="table--notebook">
+  <table mat-table [dataSource]=dataSource class="mat-elevation-z8">
 
-  <!-- NOMBRE -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    <td mat-cell *matCellDef="let element "> {{element.name}} </td>
-  </ng-container>
+    <!-- NOMBRE -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element "> {{element.name}} </td>
+    </ng-container>
 
-  <!-- CANTIDAD -->
-  <ng-container matColumnDef="count">
-    <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-    <td mat-cell *matCellDef="let element "> {{element.count}} </td>
-  </ng-container>
+    <!-- CANTIDAD -->
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let element "> {{element.count}} </td>
+    </ng-container>
 
-  <!-- PRECIO -->
-  <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef> Precio </th>
-    <td mat-cell *matCellDef="let element "> {{ element.price | currency }} </td>
-  </ng-container>
+    <!-- PRECIO -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let element "> {{ element.price | currency }} </td>
+    </ng-container>
 
-  <!-- PORCENTAJE DE DESCUENTO -->
-  <ng-container matColumnDef="percentDiscount">
-    <th mat-header-cell *matHeaderCellDef> % Descuento </th>
-    <td mat-cell *matCellDef="let element "> {{element.percentDiscount}}% </td>
-  </ng-container>
+    <!-- PORCENTAJE DE DESCUENTO -->
+    <ng-container matColumnDef="percentDiscount">
+      <th mat-header-cell *matHeaderCellDef> % Descuento </th>
+      <td mat-cell *matCellDef="let element "> {{element.percentDiscount}}% </td>
+    </ng-container>
 
+    <!-- FECHA -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Hora </th>
+      <td mat-cell *matCellDef="let element "> {{element.date | date: 'hh:mm a'}} </td>
+    </ng-container>
 
-  <!-- TOTAL -->
-  <ng-container matColumnDef="total">
-    <th mat-header-cell *matHeaderCellDef> Total </th>
-    <td mat-cell *matCellDef="let element "> {{ element.total | currency }} </td>
-  </ng-container>
+    <!-- TOTAL -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let element "> {{ element.total | currency }} </td>
+    </ng-container>
 
-  <!-- ACCIONES -->
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>edit</mat-icon>
-          <span>Editar</span>
+    <!-- ACCIONES -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="delete(element.idFirebase)" mat-button class="warn">
+          <mat-icon style="color: rgb(197, 133, 133)">delete</mat-icon>
         </button>
-        <button class="warn" mat-menu-item>
-          <mat-icon style="color: rgb(122, 24, 24)">delete</mat-icon>
-          <span  style="color: rgb(122, 24, 24)">Borrar</span>
-        </button>
-      </mat-menu>
-    </td>
-  </ng-container>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
-<!-- PAGINADOR -->
-<mat-paginator #paginator [pageSizeOptions]="[5, 10, 15, 20]"
-showFirstLastButtons></mat-paginator>
+
+</div>
+

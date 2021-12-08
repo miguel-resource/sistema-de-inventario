@@ -6,7 +6,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { TableProductComponent } from './components/table-product/table-product.component';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { MaterialModule } from './../material/material.module';
-import { DialogProductComponent } from './components/dialog-product/dialog-product.component';
+import { DialogProductComponent } from '../dialogs/dialog-product/dialog-product.component';
 
 @NgModule({
   declarations: [

@@ -1,0 +1,9 @@
+.table__shopping {
+  min-height: 100px;
+  max-height: 400px;
+  overflow: auto;
+
+  .mat-table {
+    width: 100%;
+  }
+}

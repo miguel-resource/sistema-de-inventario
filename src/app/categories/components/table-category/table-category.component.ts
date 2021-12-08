@@ -2,15 +2,19 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { throwIfEmpty } from 'rxjs';
-import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogCategoryComponent } from './../dialog-category/dialog-category.component'
-import { Category } from './../../../core/models/categories.model';
-import { Cate  } from './../../../core/models/category.model'
+
+/* Model */
+import { Category } from './../../../core/models/category.model'
 import { Product } from './../../../core/models/product.model'
+
+/* Services */
 import { CategoriesService } from './../../../core/services/categories/categories.service';
 import { ProductsService } from './../../../core/services/products/products.service';
 
+/* DialogComponent */
+import { DialogCategoriesComponent } from './../../../dialogs/dialog-categories/dialog-categories.component'
 @Component({
   selector: 'app-table-category',
   templateUrl: './table-category.component.html',
@@ -20,12 +24,17 @@ export class TableCategoryComponent implements OnInit {
 
   categories: Category[] = []; //mat-toggle categorias
   products: Product[] = []; //mat-table products
-  displayedColumns : string [] = ['codeBar', 'name', 'price','percentDiscount','priceDiscount','count','minValue','category', 'date', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'view',
+    'actions'
+  ];
   nombreCategoria: string[] = [];
   subtitle: string = "";
 
   @ViewChild('paginator') paginator!: MatPaginator;
-  dataSource!: MatTableDataSource<Product>
+  dataSource!: MatTableDataSource<Category>
 
   constructor(
     private categoryService: CategoriesService,
@@ -35,18 +44,18 @@ export class TableCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe((resp:any) => {
-      this.categories = resp.map((e:any) => {
+    this.categoryService.getAll().subscribe((resp: any) => {
+      this.categories = resp.map((e: any) => {
         return {
           idFirebase: e.payload.doc.id,
           name: e.payload.doc.data().name,
-          products: e.payload.doc.data().products
         }
       })
+      this.dataSource = new MatTableDataSource(this.categories);
     });
 
-    this.productService.getAll().subscribe((resp:any) => {
-      this.products = resp.map((e:any) => {
+    this.productService.getAll().subscribe((resp: any) => {
+      this.products = resp.map((e: any) => {
         return {
           codeBar: e.payload.doc.data().codeBar,
           name: e.payload.doc.data().name,
@@ -60,12 +69,11 @@ export class TableCategoryComponent implements OnInit {
 
         }
       });
-      this.dataSource = new MatTableDataSource(this.products);
-      this.dataSource.paginator = this.paginator;
+
     })
   }
 
-  inputFile(cadena:string):void {
+  inputFile(cadena: string): void {
     console.log(cadena);
   }
 
@@ -75,13 +83,13 @@ export class TableCategoryComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  test(value:any) {
-    this.categoryService.getCategory(value).subscribe((doc:any) => {
+  test(value: any) {
+    this.categoryService.getCategory(value).subscribe((doc: any) => {
       this.nombreCategoria = doc.payload.data().products;
-      this.nombreCategoria.forEach((productId:any) => {
+      this.nombreCategoria.forEach((productId: any) => {
         console.log(this.nombreCategoria)
-        this.productService.get(productId).subscribe((resp:any) => {
-          this.products = resp.map((e:any) => {
+        this.productService.get(productId).subscribe((resp: any) => {
+          this.products = resp.map((e: any) => {
             return {
               codeBar: e.payload.doc.data().codeBar,
               name: e.payload.doc.data().name,
@@ -100,10 +108,32 @@ export class TableCategoryComponent implements OnInit {
     })
   }
 
-  createCategoryDialog():void {
+  createCategoryDialog(): void {
     const dialogRef = this.dialog.open(DialogCategoryComponent, {
       width: '400px'
     });
+  }
+
+  showProducts(name: string): void {
+    this.productService.getByCategory(name).subscribe((resp: any) => {
+      let data: Product[] = resp.map((e: any) => {
+        return {
+          codeBar: e.payload.doc.data().codeBar,
+          name: e.payload.doc.data().name,
+          count: e.payload.doc.data().count,
+          price: e.payload.doc.data().price,
+          minValue: e.payload.doc.data().minValue,
+          percentDiscount: e.payload.doc.data().percentDiscount,
+          category: e.payload.doc.data().category,
+          date: e.payload.doc.data().date
+        }
+      });
+
+      this.dialog.open(DialogCategoriesComponent, {
+        data: data,
+        width: '1000px'
+      });
+    })
   }
 
 }

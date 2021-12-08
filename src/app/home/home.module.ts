@@ -6,7 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { CardsInformationComponent } from './components/cards-information/cards-information.component';
 import { NotebookComponent } from './components/notebook/notebook.component';
 import { MaterialModule } from './../material/material.module';
-import { DialogComponent } from './components/notebook/dialog/dialog.component'
+import { DialogNotebookComponent } from '../dialogs/dialog-notebook/dialog-notebook.component';
+import { DialogConfirmComponent } from '../dialogs/dialog-confirm/dialog-confirm.component'
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { DialogComponent } from './components/notebook/dialog/dialog.component'
     HomeComponent,
     CardsInformationComponent,
     NotebookComponent,
-    DialogComponent,
+    DialogNotebookComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     HomeRoutingModule,

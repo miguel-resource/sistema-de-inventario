@@ -1,3 +1,3 @@
-export interface Cate {
+export interface Category {
   name: string;
 }

@@ -64,7 +64,11 @@
   }
 
 
-  .table__order {
+  .table--order {
+    max-height: 400px;
+    overflow: auto;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+
     table {
       width: 100%;
       text-align: center;
@@ -86,9 +90,10 @@
 
   .table__pay {
     width: 80%;
-
     h3 {
       margin-bottom: 5px;
+      margin-left: 10px;
+      float: left;
     }
 
     .table__pay--buttons {

@@ -13,7 +13,7 @@ export class NotebookService {
   }
 
   getAll():any {
-    return this.firestore.collection("notebook").snapshotChanges();
+    return this.firestore.collection("notebook", ref => ref.orderBy("date", "desc")).snapshotChanges();
   }
 
   get(id: string | undefined):any {
@@ -29,8 +29,12 @@ export class NotebookService {
     return this.firestore.collection("cardsHome").doc(id).update(data);
   }
 
-  delete(id:string | undefined):any {
-    return this.firestore.collection("cardsHome").doc(id).delete();
+  delete(): any {
+    return this.firestore.collection("notebook").get();
+  }
+
+  deleteById(id:string | undefined): any {
+    return this.firestore.collection("notebook").doc(id).delete();
   }
 
 }
