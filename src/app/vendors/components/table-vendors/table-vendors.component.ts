@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TableVendorsComponent implements OnInit {
 
   vendors: Vendor[] = [];
-  displayedColumns: string[] = ['name', 'priceOrders', 'paid', 'toPay', 'products', 'actions'];
+  displayedColumns: string[] = ['name', 'priceOrders', 'paid', 'toPay', 'actions'];
   filterName = '';
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource!: MatTableDataSource<Vendor>;

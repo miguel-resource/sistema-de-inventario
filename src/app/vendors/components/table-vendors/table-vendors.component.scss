@@ -20,24 +20,24 @@
   background-color: #fff !important;;
 }
 
-.mat-table {
-  width: 90%;
-  margin: 0 auto;
+.table-vendors {
+  min-height: 200px;
+  max-height: 600px;
+  margin-bottom: 80px;
+  overflow: auto;
 
-  .mat-header-cell {
-    font-size: 17px;
-    text-align: center;
-  }
+  .mat-table {
+    width: 100%;
+    margin: 0 auto;
 
-  .mat-cell {
-    text-align: center;
+    .mat-header-cell {
+      font-size: 17px;
+      text-align: center;
+    }
+
+    .mat-cell {
+      text-align: center;
+    }
   }
 }
 
-.mat-paginator {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 250px;
-
-  
-}
