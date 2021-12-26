@@ -1,0 +1,53 @@
+<div class="new-vendor">
+  <mat-horizontal-stepper>
+    <!-- Step 1: Name -->
+    <mat-step class="step__name" errorMessage="Nombre es requerido">
+      <ng-template matStepLabel>Ingresa el nombre de la empresa</ng-template>
+      <form class="form__name" [formGroup]="formName">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="name" matInput required />
+        </mat-form-field>
+      </form>
+      <button [disabled]="!formName.valid" mat-button matStepperNext>
+        Siguiente
+      </button>
+    </mat-step>
+    <!-- Step 2: Add products -->
+    <mat-step [stepControl]="formAddProduct">
+      <ng-template matStepLabel>Ingresa los productos del proveedor</ng-template>
+      <!-- Add product form -->
+      <div class="addProduct">
+        <form [formGroup]="formAddProduct">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del producto</mat-label>
+            <input formControlName="code" matInput required/>
+          </mat-form-field>
+
+          <div class="addProduct__price">
+            <mat-form-field appearance="outline">
+              <mat-label>Precio menudeo</mat-label>
+              <input formControlName="priceUnity" matInput value="value" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Precio mayoreo</mat-label>
+              <input formControlName="pricePlus" matInput value="value" />
+            </mat-form-field>
+          </div>
+
+          <button mat-button>Agregar</button>
+        </form>
+
+        <div class="panel">
+          <h4>Información del producto</h4>
+          <ul>
+            <li>Nombre del producto:</li>
+            <li>Precio al público:</li>
+            <li>Cantidad en inventario:</li>
+          </ul>
+        </div>
+      </div>
+
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

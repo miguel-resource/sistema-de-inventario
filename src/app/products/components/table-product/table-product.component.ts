@@ -24,7 +24,7 @@ export class TableProductComponent implements OnInit {
   products: Product[] = [];
   producsSort: Product[] = [];
   categories: Category[] = [];
-  displayedColumns: string[] = ['codeBar', 'name', 'price', 'percentDiscount', 'priceDiscount', 'count', 'minValue', 'category', 'date', 'actions'];
+  displayedColumns: string[] = ['codeBar', 'name', 'price', 'percentDiscount', 'priceDiscount', 'count', 'minValue', 'category','vendors', 'date', 'actions'];
   nameCategory: string = '';
   filterName = '';
 

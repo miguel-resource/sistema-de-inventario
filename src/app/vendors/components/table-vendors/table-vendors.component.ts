@@ -1,9 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+/* Services */
 import { VendorsService } from 'src/app/core/services/vendors/vendors.service';
+
+/* Models */
 import { Vendor } from 'src/app/core/models/vendors.model'
+
+/* Material */
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+
+/* Dialgos */
+import { NewVendorComponent } from './../../dialogs/new-vendor/new-vendor.component'
 
 @Component({
   selector: 'app-table-vendors',
@@ -20,6 +29,7 @@ export class TableVendorsComponent implements OnInit {
 
   constructor(
     private vendorService: VendorsService,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +55,12 @@ export class TableVendorsComponent implements OnInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
+  }
+
+  newVendor(): void {
+    const dialogRef = this.matDialog.open(NewVendorComponent, {
+      width: '800px'
+    });
   }
 
 

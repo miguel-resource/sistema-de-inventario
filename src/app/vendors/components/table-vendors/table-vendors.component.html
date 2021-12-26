@@ -3,7 +3,8 @@
 </mat-form-field>
 
 <div class="buttons__vendors">
-  <button mat-raised-button class="buttons__vendors--add">Añadir nuevo provedor</button>
+  <button mat-raised-button (click)="newVendor()" class="buttons__vendors--add">Añadir nuevo proveedor</button>
+  <button mat-raised-button>Nueva orden</button>
   <button mat-raised-button class="buttons__vendors--compare">Comparar precios</button>
 </div>
 
@@ -43,8 +44,12 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>
-            <mat-icon>edit</mat-icon>
+            <mat-icon>money</mat-icon>
             <span>Pagar</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>note</mat-icon>
+            <span>Ordenes</span>
           </button>
           <button mat-menu-item>
             <mat-icon style="color: rgb(122, 24, 24)">delete</mat-icon>

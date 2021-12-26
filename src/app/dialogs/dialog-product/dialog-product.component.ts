@@ -20,7 +20,6 @@ import { DialogSuccesfulyComponent } from './../dialog-succesfuly/dialog-succesf
 export class DialogProductComponent implements OnInit {
   formProduct: FormGroup = new FormGroup({});
   categories: string[] = [];
-  @ViewChild('animeObject') AnimationObject!: ElementRef;
 
   constructor(
     private productsService: ProductsService,
@@ -28,7 +27,7 @@ export class DialogProductComponent implements OnInit {
     private categoriesService: CategoriesService,
     public dialogRef: MatDialogRef<DialogProductComponent>,
     private dialogSuccesfully: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.formProduct = this.formBuilder.group({

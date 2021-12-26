@@ -4,4 +4,5 @@ export interface Vendor {
   paid: number;
   toPay: number;
   products: string[];
+  orders: string[];
 }

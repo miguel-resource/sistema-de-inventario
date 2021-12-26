@@ -20,6 +20,8 @@ import { DialogNotificationComponent } from './dialogs/dialog-notification/dialo
 import { DialogSuccesfulyComponent } from './dialogs/dialog-succesfuly/dialog-succesfuly.component';
 import { DialogShoppingComponent } from './dialogs/dialog-shopping/dialog-shopping.component';
 import { DialogCategoriesComponent } from './dialogs/dialog-categories/dialog-categories.component';
+import { DialogNewVendorComponent } from './dialogs/dialog-new-vendor/dialog-new-vendor.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,11 +31,14 @@ import { DialogCategoriesComponent } from './dialogs/dialog-categories/dialog-ca
     DialogSuccesfulyComponent,
     DialogShoppingComponent,
     DialogCategoriesComponent,
+    DialogNewVendorComponent,
   ],
   imports: [
     RouterModule,
     MaterialModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,

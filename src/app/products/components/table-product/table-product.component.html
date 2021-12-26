@@ -1,13 +1,15 @@
 <mat-form-field>
-  <input matInput  (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
+  <input matInput (keyup)="applyFilter(filterName)" placeholder="Buscar..." [(ngModel)]="filterName">
 </mat-form-field>
 
 <div class="buttons">
-  <button class="buttons--createProduct" (click)="createProductDialog()"  mat-raised-button color="accent"><i class='bx bx-barcode'></i>Crear nuevo producto</button>
+  <button class="buttons--createProduct" (click)="createProductDialog()" mat-raised-button color="accent"><i
+      class='bx bx-barcode'></i>Crear nuevo producto</button>
 </div>
 
-<mat-button-toggle-group #group="matButtonToggleGroup" name="favoriteColor" aria-label="Favorite Color"   >
-  <mat-button-toggle *ngFor="let item of categories" (change)="applyFilter(item.name)" value="{{ item.name }}">{{ item.name }}</mat-button-toggle>
+<mat-button-toggle-group #group="matButtonToggleGroup" name="favoriteColor" aria-label="Favorite Color">
+  <mat-button-toggle *ngFor="let item of categories" (change)="applyFilter(item.name)" value="{{ item.name }}">{{
+    item.name }}</mat-button-toggle>
   <mat-button-toggle style="background-color: brown;" (change)="cancellFilter()">Todos</mat-button-toggle>
 </mat-button-toggle-group>
 
@@ -22,7 +24,7 @@
     <!-- NOMBRE -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let element"> {{element.name | uppercase | slice:0:15  }}... </td>
+      <td mat-cell *matCellDef="let element"> {{element.name | uppercase | slice:0:15 }}... </td>
     </ng-container>
 
     <!-- PRECIO -->
@@ -55,10 +57,22 @@
       <td mat-cell *matCellDef="let element"> {{ element.minValue }} </td>
     </ng-container>
 
-    <!-- CATEGORIA --> <ng-container matColumnDef="category">
+    <!-- CATEGORIA -->
+    <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef> Categoría </th>
       <td mat-cell *matCellDef="let element"> {{ element.category }}</td>
     </ng-container>
+
+    <!-- PROVEEDORES -->
+    <ng-container matColumnDef="vendors">
+      <th mat-header-cell *matHeaderCellDef> Proveedores </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button>
+          Ver
+        </button>
+      </td>
+    </ng-container>
+
 
 
     <!-- FECHA -->
@@ -92,4 +106,3 @@
   </table>
 
 </div>
-
