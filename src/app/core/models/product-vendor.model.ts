@@ -1,8 +1,8 @@
 export interface ProductVendor {
-  id: string;
+  code: string;
   name: string;
-  priceRetail: number;
-  priceWholesale: number;
+  priceUnity: number;
+  priceMay: number;
 }
 
 

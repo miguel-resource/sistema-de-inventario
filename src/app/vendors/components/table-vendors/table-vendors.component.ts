@@ -59,9 +59,11 @@ export class TableVendorsComponent implements OnInit {
 
   newVendor(): void {
     const dialogRef = this.matDialog.open(NewVendorComponent, {
-      width: '800px'
+      width: '1000px'
     });
   }
+
+
 
 
 }

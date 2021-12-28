@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,11 +14,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule} from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import {MatStepperModule} from '@angular/material/stepper';
-
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [],
   imports: [
@@ -38,8 +38,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatNativeDateModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatStepperModule
-
+    MatStepperModule,
+    MatCheckboxModule
   ],
   exports: [
     MatSidenavModule,
@@ -59,7 +59,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatNativeDateModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatStepperModule
+    MatStepperModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule {
